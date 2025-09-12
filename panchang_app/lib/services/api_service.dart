@@ -6,7 +6,13 @@ class ApiService {
   // Change this to your FastAPI server URL
   // For local development, use: http://10.0.2.2:8000 (Android emulator)
   // For physical device, use your computer's IP address
-  static const String baseUrl = 'http://192.168.29.153:8000';
+  // Prefer setting this via --dart-define=API_BASE_URL=your_url
+  // Example: flutter run --dart-define=API_BASE_URL=https://your-domain.com
+  // Default falls back to Android emulator loopback (10.0.2.2)
+  static const String baseUrl = String.fromEnvironment(
+    'API_BASE_URL',
+    defaultValue: 'http://10.0.2.2:8000',
+  );
 
   // For testing with your actual device, replace with your computer's IP
   // Example: static const String baseUrl = 'http://192.168.1.100:8000';
